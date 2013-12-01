@@ -35,6 +35,7 @@
       ],
       "js": [
         "js/jquery/jquery.min.js",
+        "src/inject/popover.js",
         "src/inject/inject.js"
       ]
     }

@@ -11,11 +11,27 @@
 // 	}
 // 	}, 10);
 // });
-
-REGEX = "*://*.wikipedia.org/wiki/*"
+WIKI_URL_REGEX = /^(http|https):\/\/[a-z]+.wikipedia.org\/wiki\/[a-zA-Z0-9_()#%]+$/i
+CLASS_MATCHER = /easy-wiki-popover/i
 
 $(document).ready(function() {
-	$("a").hover(function() {
-		console.log(this.href);
+	$("a").on('mouseenter', function() {
+		if (this.href.match(WIKI_URL_REGEX)) {
+			if (!($(this).hasClass("easy-wiki-popover"))) {
+				$(this).addClass("easy-wiki-popover");
+				$(this).popover({placement: 'bottom'}).popover("show");
+			}
+
+		}
 	});
+
+	$("a").on('mouseleave', function() {
+		if (this.href.match(WIKI_URL_REGEX)) {
+			if ($(this).hasClass("easy-wiki-popover")) {
+				$(this).popover("hide");
+			}
+
+		}
+	});
+
 });
