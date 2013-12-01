@@ -1,0 +1,4 @@
+easywiki
+========
+
+Internet research. Simplified.
