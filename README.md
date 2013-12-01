@@ -1,4 +1,4 @@
-easywiki
+EasyWiki
 ========
 
 Internet research. Simplified.

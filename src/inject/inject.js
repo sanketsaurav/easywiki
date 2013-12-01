@@ -45,6 +45,8 @@ var wikiFetch = function(url) {
 
 $(document).ready(function() {
 	
+	var delay = 1000, setTimeoutConst;
+
 	$("a").on('mouseenter', function() {
 		if (this.href.match(WIKI_URL_REGEX)) {
 
