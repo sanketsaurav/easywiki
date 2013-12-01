@@ -24,7 +24,6 @@
     "persistent": true
   },
   "permissions": [
-    "tabs",
     "*://*/*"
   ],
   "content_scripts": [
@@ -42,7 +41,6 @@
       ],
       "js": [
         "js/jquery/jquery.min.js",
-        // "src/inject/popover.js",
         "js/tooltip.js",
         "js/popover.js",
         "src/inject/inject.js"
