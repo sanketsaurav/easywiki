@@ -1,0 +1,41 @@
+{
+  "name": "EasyWiki",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Simplifying internet research. No more multiple tabs.",
+  "homepage_url": "http://easywiki.dfth.in",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": true
+  },
+  "permissions": [
+    "clipboardWrite",
+    "*://*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/*"
+      ],
+      "css": [
+        "src/inject/inject.css"
+      ]
+    },
+    {
+      "matches": [
+        "https://www.google.com/*"
+      ],
+      "js": [
+        "src/inject/inject.js"
+      ]
+    }
+  ]
+}
