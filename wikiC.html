@@ -1,0 +1,39 @@
+<html>
+<head> 
+<script type="text/javascript" src="js/jquery/jquery.js"></script>
+<script type="text/javascript">
+ $.ajax({
+                    //url: "http://en.wikipedia.org/w/api.php?action=parse&page=sugarcane&prop=text&disablepp=true&format=json&section=0",
+                    //url:"http://en.wikipedia.org/w/api.php?action=query&page=Freddie_Mercury&prop=extracts&disablepp=true&format=json&section=0",
+                    url:"http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=Sugarcane",
+                    //force to handle it as text
+                    dataType: "jsonp",
+                    success: function(data) {
+                        
+                        //data downloaded so we call parseJSON function 
+                        //and pass downloaded data
+                        var jsan = eval(data);
+                        //now json variable contains data in json format
+                        //let's display a few items
+                        $.each(data.query.pages,function(key){
+                            $("#div2").html(data.query.pages[key].extract);
+
+
+                        });
+                        //window.mainContent=jsan.parse.text['*'];
+                        /*var disp=$.parseHTML(mainContent);
+                        
+                        var el = $( '<div></div>' );
+                        el.html(disp);
+                        
+                        $("#div2").html($('p', el)[0])*/
+                    }
+                });
+
+ </script>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    </body>
+    </html>
