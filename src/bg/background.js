@@ -21,7 +21,7 @@ chrome.browserAction.onClicked.addListener(function(){
 	}
 	else{
 		var obje={text:"off"};
-		chrome.browserAction.setBadgeText(objec);
+		chrome.browserAction.setBadgeText(obje);
 
 	}
 		_OnOff+=1;
