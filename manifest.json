@@ -17,13 +17,13 @@
     "persistent": true
   },
   "permissions": [
-    "clipboardWrite",
-    "*://*"
+    "tabs",
+    "*://*/*"
   ],
   "content_scripts": [
     {
       "matches": [
-        "https://www.google.com/*"
+        "*://*/*"
       ],
       "css": [
         "src/inject/inject.css"
@@ -31,9 +31,10 @@
     },
     {
       "matches": [
-        "https://www.google.com/*"
+        "*://*/*"
       ],
       "js": [
+        "js/jquery/jquery.min.js",
         "src/inject/inject.js"
       ]
     }
