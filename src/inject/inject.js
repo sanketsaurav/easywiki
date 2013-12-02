@@ -42,6 +42,7 @@ var wikiFetch = function(url) {
 		link.attr("data-original-title", ewp_title);
 		$(".popover-content").html(ewp_content);
 		$(".popover-title").html(ewp_title);
+		$(".ewp-active").popover("show");
 	})
 	.fail(function(data) {
 		var ewp_content = "Drats! Error fetching the Wikipedia page.";
@@ -52,6 +53,7 @@ var wikiFetch = function(url) {
 		link.attr("data-original-title", ewp_title);
 		$(".popover-content").html(ewp_content);
 		$(".popover-title").html(ewp_title);
+		$(".ewp-active").popover("show");
 	});
 }
 
@@ -98,13 +100,14 @@ $(document).ready(function() {
 					}).popover("show");
 					wikiFetch(__this.href);
 				}
-
 			}
+			$(".ewp-active").popover("show");
 		}, delay);
 	});
 
 	$("a").on("mouseleave", function() {
 		clearTimeout(timer);
+		$(this).removeClass("easy-wiki-popover");
 	});
 
 });
