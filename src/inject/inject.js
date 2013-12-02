@@ -1,3 +1,23 @@
+var statusa;
+console.log(statusa+"is this");
+chrome.extension.sendRequest({msg: "getStatus"}, function(response) {
+   if (response.status == 1) {
+   		statusa = true;
+   		console.log("stausa is "+statusa);
+   } else {
+   		statusa = false;
+   		console.log("stausa is "+statusa);
+   }
+});
+chrome.runtime.onMessage.addListener(
+	  function(request, sender, sendResponse) {
+  		//chrome.pageAction.show(sender.tab.id);
+   				console.log("requested sending status:"+request.status);
+        		
+    			}
+    
+  );
+
 WIKI_URL_REGEX = /^((http|https):\/\/)?[a-z]+.wikipedia.org\/wiki\/[a-zA-Z0-9_()#%,.!-]+$/i
 CLASS_MATCHER = /easy-wiki-popover/i
 
@@ -48,7 +68,7 @@ $(document).ready(function() {
 	var delay = 1000, setTimeoutConst;
 
 	$("a").on('mouseenter', function() {
-		if (this.href.match(WIKI_URL_REGEX)) {
+		if (statusa && this.href.match(WIKI_URL_REGEX)) {
 
 			$(this).addClass("ewp-active");
 
@@ -84,3 +104,4 @@ $(document).ready(function() {
 	});
 
 });
+
