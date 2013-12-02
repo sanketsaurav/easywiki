@@ -1,22 +1,12 @@
 var statusa;
-console.log(statusa+"is this");
+
 chrome.extension.sendRequest({msg: "getStatus"}, function(response) {
    if (response.status == 1) {
    		statusa = true;
-   		console.log("stausa is "+statusa);
    } else {
    		statusa = false;
-   		console.log("stausa is "+statusa);
    }
 });
-chrome.runtime.onMessage.addListener(
-	  function(request, sender, sendResponse) {
-  		//chrome.pageAction.show(sender.tab.id);
-   				console.log("requested sending status:"+request.status);
-        		
-    			}
-    
-  );
 
 WIKI_URL_REGEX = /^((http|https):\/\/)?[a-z]+.wikipedia.org\/wiki\/[a-zA-Z0-9_()#%,.!-]+$/i
 CLASS_MATCHER = /easy-wiki-popover/i
@@ -49,6 +39,7 @@ var wikiFetch = function(url) {
 		var link = $(".ewp-active");
 		link.attr("data-content", ewp_content);
 		link.attr("data-title", ewp_title);
+		link.attr("data-original-title", ewp_title);
 		$(".popover-content").html(ewp_content);
 		$(".popover-title").html(ewp_title);
 	})
@@ -58,6 +49,7 @@ var wikiFetch = function(url) {
 		var link = $(".ewp-active");
 		link.attr("data-content", ewp_content);
 		link.attr("data-title", ewp_title);
+		link.attr("data-original-title", ewp_title);
 		$(".popover-content").html(ewp_content);
 		$(".popover-title").html(ewp_title);
 	});
@@ -65,43 +57,54 @@ var wikiFetch = function(url) {
 
 $(document).ready(function() {
 	
-	var delay = 1000, setTimeoutConst;
+	var delay = 700, timer;
 
 	$("a").on('mouseenter', function() {
-		if (statusa && this.href.match(WIKI_URL_REGEX)) {
+		__this = this;
 
-			$(this).addClass("ewp-active");
-
-			if (!($(this).hasClass("easy-wiki-popover"))) {
-				$(this).addClass("easy-wiki-popover");
-
-				$(this).popover({
-					html: true,
-					trigger: 'manual',
-					title: "EasyWiki",
-					content: "Loading..."
-				}).on("mouseenter", function() {
-					var _this = this;
-			        $(this).popover("show");
-			        $(this).siblings(".popover").on("mouseleave", function () {
-			            $(_this).popover('destroy');
-			            $(_this).removeClass("ewp-active");
-			        });
-				}).on("mouseleave", function() {
-					var _this = this;
-			        setTimeout(function () {
-			            if (!$(".popover:hover").length) {
-			                $(_this).popover("destroy");
-			                $(_this).removeClass("ewp-active");
-			            }
-			        }, 100);
-				}).popover("show");
-
-				wikiFetch(this.href);
-			}
-
+		popTitle = $(this).attr("title");
+		if (statusa && !($(this).hasClass("easy-wiki-popover"))) {
+			$(this).attr("title", "");
 		}
+
+		timer = setTimeout(function() {
+			if (statusa && __this.href.match(WIKI_URL_REGEX)) {
+
+				$(__this).addClass("ewp-active");
+
+				if (!($(__this).hasClass("easy-wiki-popover"))) {
+					$(__this).addClass("easy-wiki-popover");
+
+					$(__this).popover({
+						html: true,
+						trigger: 'manual',
+						title: popTitle,
+						content: "Loading..."
+					}).on("mouseenter", function() {
+						var _this = this;
+				        $(this).popover("show");
+				        $(this).siblings(".popover").on("mouseleave", function () {
+				            $(_this).popover('destroy');
+				            $(_this).removeClass("ewp-active");
+				        });
+					}).on("mouseleave", function() {
+						var _this = this;
+				        setTimeout(function () {
+				            if (!$(".popover:hover").length) {
+				                $(_this).popover("destroy");
+				                $(_this).removeClass("ewp-active");
+				            }
+				        }, 5);
+					}).popover("show");
+					wikiFetch(__this.href);
+				}
+
+			}
+		}, delay);
+	});
+
+	$("a").on("mouseleave", function() {
+		clearTimeout(timer);
 	});
 
 });
-
