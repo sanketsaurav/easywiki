@@ -78,7 +78,7 @@ $(document).ready(function() {
 					$(__this).popover({
 						html: true,
 						trigger: 'manual',
-						title: popTitle,
+						title: popTitle || 'EasyWiki',
 						content: "Loading..."
 					}).on("mouseenter", function() {
 						var _this = this;
