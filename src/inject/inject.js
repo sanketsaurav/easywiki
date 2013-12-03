@@ -8,7 +8,7 @@ chrome.extension.sendRequest({msg: "getStatus"}, function(response) {
    }
 });
 
-WIKI_URL_REGEX = /^((http|https):\/\/)?[a-z]+.wikipedia.org\/wiki\/[a-zA-Z0-9_()#%,.!-]+$/i
+WIKI_URL_REGEX = /^((http|https):\/\/)?[a-z]+.wikipedia.org\/wiki\/[a-zA-Z0-9_()\/%,.!-]+$/i
 CLASS_MATCHER = /easy-wiki-popover/i
 
 var extractLanguage = function(url) {
@@ -16,7 +16,7 @@ var extractLanguage = function(url) {
 }
 
 var extractTitle = function(url) {
-	return url.match(/wiki\/[a-zA-Z0-9_()#%,.!-]+$/i)[0].replace("wiki/", '');
+	return url.match(/wiki\/[a-zA-Z0-9_()\/%,.!-]+$/i)[0].replace("wiki/", '');
 }
 
 var wikiFetch = function(url) {
