@@ -19,7 +19,7 @@ var extractTitle = function(url) {
 	return url.match(/wiki\/[a-zA-Z0-9_()\/%,.!-]+$/i)[0].replace("wiki/", '');
 }
 
-var showPopup = funtion(ewp_content, ewp_title) {
+var showPopup = function(ewp_content, ewp_title) {
 	var link = $(".ewp-active");
 	link.attr("data-content", ewp_content);
 	link.attr("data-title", ewp_title);
@@ -33,7 +33,7 @@ var wikiFetch = function(url) {
 	language = extractLanguage(url);
 	title = extractTitle(url);
 
-	fetchUrl = "http://" + language + '.wikipedia.org/w/api.php?' + 'action=query&prop=extracts&exchars=500&format=json&titles=' + title;
+	fetchUrl = "https://" + language + '.wikipedia.org/w/api.php?' + 'action=query&prop=extracts&exchars=500&format=json&titles=' + title;
 
 	$.ajax({
 		url: fetchUrl,

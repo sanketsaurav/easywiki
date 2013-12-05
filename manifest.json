@@ -1,6 +1,6 @@
 {
   "name": "EasyWiki",
-  "version": "0.0.2",
+  "version": "0.0.2.2",
   "manifest_version": 2,
   "default_locale":"en", 
   "description": "Simplifying Wikipedia research. No more multiple tabs.",
