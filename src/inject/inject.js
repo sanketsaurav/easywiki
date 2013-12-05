@@ -19,6 +19,16 @@ var extractTitle = function(url) {
 	return url.match(/wiki\/[a-zA-Z0-9_()\/%,.!-]+$/i)[0].replace("wiki/", '');
 }
 
+var showPopup = funtion(ewp_content, ewp_title) {
+	var link = $(".ewp-active");
+	link.attr("data-content", ewp_content);
+	link.attr("data-title", ewp_title);
+	link.attr("data-original-title", ewp_title);
+	$(".popover-content").html(ewp_content);
+	$(".popover-title").html(ewp_title);
+	$(".ewp-active").popover("show");
+}
+
 var wikiFetch = function(url) {
 	language = extractLanguage(url);
 	title = extractTitle(url);
@@ -36,24 +46,12 @@ var wikiFetch = function(url) {
 			ewp_content = data.query.pages[key].extract.replace(/(<([^>]+)>)/ig,"");
 			ewp_title = data.query.pages[key].title;
 		});
-		var link = $(".ewp-active");
-		link.attr("data-content", ewp_content);
-		link.attr("data-title", ewp_title);
-		link.attr("data-original-title", ewp_title);
-		$(".popover-content").html(ewp_content);
-		$(".popover-title").html(ewp_title);
-		$(".ewp-active").popover("show");
+		showPopup(ewp_content, ewp_title);
 	})
 	.fail(function(data) {
 		var ewp_content = "Drats! Error fetching the Wikipedia page.";
 		var ewp_title = "Error";
-		var link = $(".ewp-active");
-		link.attr("data-content", ewp_content);
-		link.attr("data-title", ewp_title);
-		link.attr("data-original-title", ewp_title);
-		$(".popover-content").html(ewp_content);
-		$(".popover-title").html(ewp_title);
-		$(".ewp-active").popover("show");
+		showPopup(ewp_content, ewp_title);
 	});
 }
 
