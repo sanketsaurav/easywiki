@@ -17,4 +17,4 @@ Most certainly, it wouldn't. It waits for at least 700 milliseconds before bring
 
 - - -
 
-Crafted with &hearts; by [@sanketsaurav](http://github.com/sanketsaurav) and [@avck](http://github.com/avck).
+Crafted with &hearts; by [@sanketsaurav](http://github.com/sanketsaurav) and [@avckp](http://github.com/avckp).
