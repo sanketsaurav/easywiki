@@ -1,14 +1,27 @@
-var _OnOff=1;
-
+var _OnOff=0;
+if(!localStorage["easyWiki_OnOff"])
+	{
+		localStorage["easyWiki_OnOff"]=1;
+		_OnOff=1;
+	}
+else{
+		_OnOff=localStorage["easyWiki_OnOff"];
+}
 var onObje={text:"on"};
 var onColorObje={color:"#0f0"};
 
 var offObje={text:"off"};
 var offColorObje={color:"#f00"};
 
+if(_OnOff){
 chrome.browserAction.setBadgeText(onObje);
 chrome.browserAction.setBadgeBackgroundColor(onColorObje);
+}
+else{
 
+chrome.browserAction.setBadgeText(offObje);
+chrome.browserAction.setBadgeBackgroundColor(offColorObje);
+}
 chrome.extension.onRequest.addListener(
 
   function(request, sender, sendResponse) {
