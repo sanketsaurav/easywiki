@@ -49,13 +49,13 @@ var reInject=function()
 chrome.browserAction.onClicked.addListener(function(){
 	if(_OnOff)
 	{
-
+		localStorage["easyWiki_OnOff"]=0;
 		chrome.browserAction.setBadgeText(offObje);
 		chrome.browserAction.setBadgeBackgroundColor(offColorObje);	
 		reInject();
 	}
 	else{
-
+		localStorage["easyWiki_OnOff"]=1;
 		chrome.browserAction.setBadgeText(onObje);
 		chrome.browserAction.setBadgeBackgroundColor(onColorObje);
 		reInject();
