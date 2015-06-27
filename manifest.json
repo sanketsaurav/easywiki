@@ -1,7 +1,7 @@
 {
   "name": "EasyWiki",
-  "version": "0.1",
-  "manifest_version": 2,
+  "version": "0.2",
+  "manifest_version": 3,
   "default_locale":"en", 
   "description": "Simplifying Wikipedia research. No more multiple tabs.",
   "homepage_url": "https://github.com/sanketsaurav/easywiki",
@@ -25,7 +25,7 @@
     "persistent": true
   },
   "permissions": [
-    "*://*.wikipedia.org/"
+    "*://*.wikipedia.org/*"
   ],
   "content_scripts": [
     {
@@ -38,7 +38,7 @@
     },
     {
       "matches": [
-        "*://*/*"
+        "*://*.wikipedia.org/*"
       ],
       "js": [
         "js/jquery/jquery.min.js",
