@@ -1,7 +1,7 @@
 {
   "name": "EasyWiki",
   "version": "0.2",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "default_locale":"en", 
   "description": "Simplifying Wikipedia research. No more multiple tabs.",
   "homepage_url": "https://github.com/sanketsaurav/easywiki",
